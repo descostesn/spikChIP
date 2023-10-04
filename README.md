@@ -18,16 +18,24 @@ of the normalization over the background.
 
 spikChIP is a command line that runs in Linux and Mac OS-X environments:
 
-    ./spikChIP -vhcdk <bin_size_kbp> -p <0|1|2|3> <configuration_file> <chrominfo_file>
+    ./spikChIP.pl -rtxgs -vclw -b <bin_size_kbp> -k <chrom_key_spikein> -p <0|1|2|3> <configuration_file> <chrominfo_file>
 
 Users can configure the behavior of the program with the following options:
 
-    -c: remove intermediate files to reduce the size of the output folder
-    -d: allow the process of BAM files of < 1 Million reads
-    -k: number of bp of the bins for the segmentation of the genome
-    -p: palette of colors for boxplots (0: black and white, 1: reds, 2: greens, 3: blues)
-    -v: verbose (show messages about the processing of the samples)
-    -h: short help
+    --clean|-c:  remove intermediate files to reduce the size of the output folder
+    --lessMillion|-l: allow the process of BAM files of < 1 Million reads
+    --binsize|-b: bin size (default: 10000 bps)
+    --chromkey | -k: Key word used to indicate the spike-in species in the chromInfo file (default: FLY)
+    --palette|-p: palette (1 for reds, 2 for greens, 3 for blues and 0 for B&W)
+    --help|-h: short help
+    --verbose|-v: verbose option
+    --overwrite|-w: overwrite existing result files
+    --raw|-r: Perform the raw normalization
+    --traditional|-t: Perform the traditional normalization
+    --chiprx|-x: Perform the ChIPRx normalization
+    --tagremoval|-g: Perform the tag removal normalization
+    --spikchip|s: Perform the spikchip normalization with loess
+    --outputfolder|-o: Path to the result folder (default: results/)
 
 The configuration file of spikChIP is a plain-text file in which each line
 contains the information about the files of a particular experimental condition:
