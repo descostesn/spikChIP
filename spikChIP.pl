@@ -467,11 +467,12 @@ sub print_help
     {
         print STDERR color("bold blue"),"spikChIP_v1.0\t\t\t\tUser commands\t\t\t\tspikChIP\n\n";
         print STDERR color("bold blue"),"NAME\n\tspikChIP, a tool to normalize ChIP-seq experiments by spike-in correction\n\n";
-        print STDERR color("bold blue"),"SYNOPSIS:\n\t$PROGRAM -rtxgs -vclw -b <bin_size_kbp> -p <0|1|2|3> <configuration_file> <chrominfo_file>\n\n";
+        print STDERR color("bold blue"),"SYNOPSIS:\n\t$PROGRAM -rtxgs -vclw -b <bin_size_kbp> -k <chrom_key_spikein> -p <0|1|2|3> <configuration_file> <chrominfo_file>\n\n";
         print STDERR color("bold blue"),"OPTIONS:\n";
         print STDERR color("bold blue"),"\t--clean|-c:  remove intermediate files to reduce the size of the output folder\n";
         print STDERR color("bold blue"),"\t--lessMillion|-l: allow the process of BAM files of < 1 Million reads\n";
         print STDERR color("bold blue"),"\t--binsize|-b: bin size (default: 10000 bps)\n";
+        print STDERR color("bold blue"),"\t--chromkey | -k: Key word used to indicate the spike-in species in the chromInfo file (default: FLY)\n";
         print STDERR color("bold blue"),"\t--palette|-p: palette (1 for reds, 2 for greens, 3 for blues and 0 for B&W)\n";
         print STDERR color("bold blue"),"\t--help|-h: short help\n";
         print STDERR color("bold blue"),"\t--verbose|-v: verbose option\n";
