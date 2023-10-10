@@ -78,6 +78,8 @@ my @SAVE_PROCEDURE;
 # --tagremoval|-g: Perform the tag removal normalization
 # --spikchip|s: Perform the spikchip normalization with loess
 # --outputfolder|-o: Path to the result folder (default: results/)
+# --boxplotspike: Perform boxplot for the spike data
+# --boxplotsample: Perform boxplot for the sample data
 
 my $CLEAN = 0;
 my $LESSMILLION = 0;
@@ -93,6 +95,8 @@ my $CHIPRX = 0;
 my $TAGREMOVAL = 0;
 my $SPIKCHIP = 0;
 my $CHROMKEY = $DEFAULT_CHROMKEY;
+my $BOXPLOTSPIKE = 0;
+my $BOXPLOTSAMPLE = 0;
 
 # 0.1 Acquire options
 Getopt::Long::GetOptions(
@@ -111,6 +115,8 @@ Getopt::Long::GetOptions(
     'tagremoval|g' => \$TAGREMOVAL,
     'spikchip|s' => \$SPIKCHIP,
     'outputfolder|o=s' => \$RESULTS,
+    'boxplotspike' => \$BOXPLOTSPIKE,
+    'boxplotsample' => \$BOXPLOTSAMPLE,
 );
 
 print_mess("$PROGRAM.pl by Enrique Blanco @ CRG (2021)");
@@ -413,14 +419,22 @@ $date = localtime();
 print_mess("[$date] Stage 4.  Generating the final boxplots of values\n");
 
 print_mess("Boxplots using the average values\n");
-GenerateBoxplot($SPIKE_TOKEN,$AVG_TOKEN);
-GenerateBoxplot($SAMPLE_TOKEN,$AVG_TOKEN);
+if($BOXPLOTSPIKE){
+    GenerateBoxplot($SPIKE_TOKEN,$AVG_TOKEN);
+}
+if($BOXPLOTSAMPLE){
+    GenerateBoxplot($SAMPLE_TOKEN,$AVG_TOKEN);
+}
 print_ok();
 print_mess("\n");
 
 print_mess("Boxplots using the maximum values\n");
-GenerateBoxplot($SPIKE_TOKEN,$MAX_TOKEN);
-GenerateBoxplot($SAMPLE_TOKEN,$MAX_TOKEN);
+if($BOXPLOTSPIKE){
+    GenerateBoxplot($SPIKE_TOKEN,$MAX_TOKEN);
+}
+if( $BOXPLOTSAMPLE){
+    GenerateBoxplot($SAMPLE_TOKEN,$MAX_TOKEN);
+}
 print_ok();
 print_mess("Finishing Stage 4. Drawing...");
 print_ok();
@@ -483,6 +497,8 @@ sub print_help
         print STDERR color("bold blue"),"\t--tagremoval|-g: Perform the tag removal normalization\n";
         print STDERR color("bold blue"),"\t--spikchip|s: Perform the spikchip normalization with loess\n";
         print STDERR color("bold blue"),"\t--outputfolder|-o: Path to the result folder (default: results/)\n";
+        print STDERR color("bold blue"), "\t--boxplotspike: Perform boxplot for the spike data\n";
+        print STDERR color("bold blue"), "\t--boxplotsample: Perform boxplot for the sample data\n";
 	exit(0);
     }
 }

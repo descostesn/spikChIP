@@ -36,6 +36,9 @@ Users can configure the behavior of the program with the following options:
     --tagremoval|-g: Perform the tag removal normalization
     --spikchip|s: Perform the spikchip normalization with loess
     --outputfolder|-o: Path to the result folder (default: results/)
+    --boxplotspike: Perform boxplot for the spike data
+    --boxplotsample: Perform boxplot for the sample data
+
 
 The configuration file of spikChIP is a plain-text file in which each line
 contains the information about the files of a particular experimental condition:
